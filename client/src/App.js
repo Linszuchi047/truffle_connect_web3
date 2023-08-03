@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import { useState,  useEffect} from "react";
+import { useState, useEffect } from "react";
 import supplychain from "./contracts/SupplyChain.json";
 import './App.css';
 
@@ -25,8 +25,7 @@ function App() {
     }
     provider && template();
   }, []);
-  useEffect(() => 
-  {
+  useEffect(() => {
     const { contract } = state;
     async function readData() {
       const data = await contract.methods.get().call();
@@ -39,11 +38,11 @@ function App() {
 
   return (
     <div>
-    <p>Show number {count} </p>
-    <button onClick={() => setCount(count)}>
+      <p>Show number {count} </p>
+      <button onClick={() => setCount(count)}>
         Click me
       </button>
-  </div>
+    </div>
   );
 }
 
