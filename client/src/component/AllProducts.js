@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-const Test = ({ state }) => {
+import State from './State';
+export default function AllProducts({ state }) {
     // const [count, setCount] = useState(0);
     const [product, setProduct] = useState([]);
+
     // const { contract } = state;
 
     // useEffect(() => {
@@ -21,6 +23,19 @@ const Test = ({ state }) => {
         }
         contract && getproduct();
     }, [state]);
+
+
+
+    const [isOpen, setOpen] = useState(false);
+    const [record, setRecord] = useState([]);
+
+    async function getProductState(address) {
+        const { contract } = state;
+        const record = await contract.methods.getProductState(address).call();
+        setRecord(record)
+        setOpen(true)
+
+    }
 
 
 
@@ -54,30 +69,65 @@ const Test = ({ state }) => {
         //     </form>
 
         //     </div>
-        <div>
-            <p>Show data<br /></p>
+        <div style={{ position: 'fixed', top: '15%', left: '2.5%' }} class='animate'>
+
             {/* <p>{count}</p> */}
 
             <table>
                 <thead>
                     <tr>
+
+                        <th>商品ID</th>
+                        <th>製造商ID</th>
                         <th>商品</th>
                         <th >材質</th>
                         <th >價格</th>
                         <th >時間</th>
                         <th >狀態</th>
+                        <th>階段</th>
                     </tr>
                 </thead>
                 <tbody >
 
                     {product.map((pd) => {
                         return (
-                            <tr >
+                            <tr>
 
 
                                 <td
                                     style={{
-                                        backgroundColor: "#C2C287",
+                                        backgroundColor: "#dcdc9e",
+                                        border: "1px solid white",
+                                        borderCollapse: "collapse",
+                                        padding: "7px",
+                                        width: "50px",
+                                        color: "black",
+
+                                    }}
+                                >
+                                    <button onClick={() => getProductState(pd.ProductID)} style={{ position: 'relative', width: '100%', backgroundColor: "#C2C287" }}>{pd.ProductID}</button>
+                                    <State open={isOpen} isClose={() => setOpen(false)} record={record}>
+                                    </State>
+
+                                </td>
+                                <td
+                                    style={{
+                                        backgroundColor: "#dcdc9e",
+                                        border: "1px solid white",
+                                        borderCollapse: "collapse",
+                                        padding: "7px",
+                                        width: "50px",
+                                        color: "black",
+
+                                    }}
+                                >
+                                    {pd.Manufacturer}
+                                </td>
+
+
+                                <td
+                                    style={{
+                                        backgroundColor: "#dcdc9e",
                                         border: "1px solid white",
                                         borderCollapse: "collapse",
                                         padding: "7px",
@@ -90,7 +140,7 @@ const Test = ({ state }) => {
                                 </td>
                                 <td
                                     style={{
-                                        backgroundColor: "#C2C287",
+                                        backgroundColor: "#dcdc9e",
                                         border: "1px solid white",
                                         borderCollapse: "collapse",
                                         padding: "7px",
@@ -103,7 +153,7 @@ const Test = ({ state }) => {
                                 </td>
                                 <td
                                     style={{
-                                        backgroundColor: "#C2C287",
+                                        backgroundColor: "#dcdc9e",
                                         border: "1px solid white",
                                         borderCollapse: "collapse",
                                         padding: "7px",
@@ -116,7 +166,7 @@ const Test = ({ state }) => {
                                 </td>
                                 <td
                                     style={{
-                                        backgroundColor: "#C2C287",
+                                        backgroundColor: "#dcdc9e",
                                         border: "1px solid white",
                                         borderCollapse: "collapse",
                                         padding: "7px",
@@ -129,7 +179,7 @@ const Test = ({ state }) => {
                                 </td>
                                 <td
                                     style={{
-                                        backgroundColor: "#C2C287",
+                                        backgroundColor: "#dcdc9e",
                                         border: "1px solid white",
                                         borderCollapse: "collapse",
                                         padding: "7px",
@@ -138,7 +188,21 @@ const Test = ({ state }) => {
 
                                     }}
                                 >
-                                    {pd.state}
+                                    {pd.State}
+                                </td>
+
+                                <td
+                                    style={{
+                                        backgroundColor: "#dcdc9e",
+                                        border: "1px solid white",
+                                        borderCollapse: "collapse",
+                                        padding: "7px",
+                                        width: "50px",
+                                        color: "black",
+
+                                    }}
+                                >
+                                    {pd.Serial}
                                 </td>
                             </tr>
 
@@ -150,4 +214,3 @@ const Test = ({ state }) => {
         </div>
     );
 }
-export default Test;
