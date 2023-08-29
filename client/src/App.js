@@ -9,8 +9,8 @@ import Enter from './component/enter';
 import Address from "./component/address";
 import Search from "./component/Search";
 import AllProducts from './component/AllProducts';
-// import Modal from './component/ProductsId';
 import ProductsId from './component/ProductsId';
+import Excel from './component/excel';
 import Navbar from "./Navbar";
 
 function App() {
@@ -62,6 +62,9 @@ function App() {
 
     case "/component/Search":
       component = <Search state={state} />
+      break
+    case "/component/excel":
+      component = <Excel />
       break
     default: // Do nothing
 

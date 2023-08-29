@@ -21,6 +21,11 @@ export default function Navbar() {
                 <a href='/component/Search'>Serach</a>
             </li>
 
+            <li>
+                <a href='/component/excel'>Excel</a>
+            </li>
+
+
 
         </ul>
     </nav>
