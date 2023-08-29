@@ -22,7 +22,7 @@ export default function Navbar() {
             </li>
 
             <li>
-                <a href='/component/excel'>Excel</a>
+                <a href='/component/change'>Excel</a>
             </li>
 
 

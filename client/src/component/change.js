@@ -1,9 +1,9 @@
-import React, { useEffect, useState, Fragment } from "react";
-import Tabletop from "tabletop";
+import React, { useEffect, useState } from "react";
+const Tabletop = require('tabletop')
 
 
 
-export default function Excel() {
+export default function State() {
     const [data, setData] = useState([]);
 
 
@@ -18,7 +18,6 @@ export default function Excel() {
 
     return (
         <>
-            <h1>data from google sheets</h1>
             <div>{data}</div>
 
         </>
