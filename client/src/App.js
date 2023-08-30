@@ -10,7 +10,7 @@ import Address from "./component/address";
 import Search from "./component/Search";
 import AllProducts from './component/AllProducts';
 import ProductsId from './component/ProductsId';
-import State from './component/change';
+import Zero from './component/Zero';
 import Navbar from "./Navbar";
 
 function App() {
@@ -63,8 +63,8 @@ function App() {
     case "/component/Search":
       component = <Search state={state} />
       break
-    case "/component/change":
-      component = <State />
+    case "/component/Zero":
+      component = <Zero state={state} />
       break
     default: // Do nothing
 

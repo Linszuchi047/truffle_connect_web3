@@ -1,19 +1,9 @@
 import { useState, useEffect } from "react";
 import State from './State';
 export default function AllProducts({ state }) {
-    // const [count, setCount] = useState(0);
+
     const [product, setProduct] = useState([]);
 
-    // const { contract } = state;
-
-    // useEffect(() => {
-
-    //     async function readData() {
-    //         const data = await contract.methods.get().call();
-    //         setCount(data);
-    //     }
-    //     contract && readData();
-    // }, [contract]);
 
     useEffect(() => {
         const { contract } = state;
