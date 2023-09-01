@@ -10,8 +10,12 @@ import Address from "./component/address";
 import Search from "./component/Search";
 import AllProducts from './component/AllProducts';
 import ProductsId from './component/ProductsId';
-import Zero from './component/Zero';
 import Navbar from "./Navbar";
+
+import Zero from './component/Zero';
+import One from "./component/One";
+import Two from "./component/Two";
+import Three from "./component/Three";
 
 function App() {
 
@@ -65,6 +69,16 @@ function App() {
       break
     case "/component/Zero":
       component = <Zero state={state} />
+      break
+    case "/component/One":
+      component = <One state={state} />
+      break
+    case "/component/Two":
+      component = <Two state={state} />
+      break
+
+    case "/component/Three":
+      component = <Three state={state} />
       break
     default: // Do nothing
 

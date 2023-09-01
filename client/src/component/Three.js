@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-export default function Zero({ state }) {
+export default function Two({ state }) {
     const [product, setProduct] = useState([]);
     const [Manufacturer_Address, setAdress] = useState('');
     // const [record, setRecord] = useState([]);
@@ -22,7 +22,7 @@ export default function Zero({ state }) {
             const product = await contract.methods.N_Product().call();
 
 
-            const Fliter = product.filter((pd) => pd.Serial === '0');
+            const Fliter = product.filter((pd) => pd.Serial === '3');
             setProduct(Fliter);
         }
         contract && N_Product();

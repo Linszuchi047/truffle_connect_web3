@@ -25,9 +25,9 @@ export default function Navbar() {
             <li className="services">
                 <a href='/component/Zero'>State</a>
                 <ul className="dropdown" >
-                    <li><a href="/">PROCESS</a></li>
-                    <li><a href="/">FINISH</a></li>
-                    <li><a href="/">IN_TRANSIT</a></li>
+                    <li><a href="/component/One">PROCESS</a></li>
+                    <li><a href="/component/Two">FINISH</a></li>
+                    <li><a href="/component/Three">IN_TRANSIT</a></li>
                     <li><a href="/">ARRIVED</a></li>
                 </ul>
 
