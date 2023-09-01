@@ -10,6 +10,7 @@ export default function AllProducts({ state }) {
         async function getproduct() {
             const address = await contract.methods.getAllProduct().call();
             setProduct(address);
+
         }
         contract && getproduct();
     }, [state]);
@@ -59,7 +60,7 @@ export default function AllProducts({ state }) {
         //     </form>
 
         //     </div>
-        <div style={{ position: 'fixed', top: '15%', left: '2.5%' }} class='animate'>
+        <div style={{ position: 'initial', top: '15%', left: '2.5%' }} class='animate'>
 
             {/* <p>{count}</p> */}
 
