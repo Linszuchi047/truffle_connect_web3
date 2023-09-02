@@ -28,7 +28,7 @@ export default function Navbar() {
                     <li><a href="/component/One">PROCESS</a></li>
                     <li><a href="/component/Two">FINISH</a></li>
                     <li><a href="/component/Three">IN_TRANSIT</a></li>
-                    <li><a href="/">ARRIVED</a></li>
+                    <li><a href="/component/Four">ARRIVED</a></li>
                 </ul>
 
 

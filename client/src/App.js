@@ -16,6 +16,7 @@ import Zero from './component/Zero';
 import One from "./component/One";
 import Two from "./component/Two";
 import Three from "./component/Three";
+import Four from "./component/Four";
 
 function App() {
 
@@ -79,6 +80,9 @@ function App() {
 
     case "/component/Three":
       component = <Three state={state} />
+      break
+    case "/component/Four":
+      component = <Four state={state} />
       break
     default: // Do nothing
 
