@@ -18,6 +18,7 @@ import Two from "./component/Two";
 import Three from "./component/Three";
 import Four from "./component/Four";
 
+import Test from "./test";
 function App() {
 
 
@@ -83,6 +84,9 @@ function App() {
       break
     case "/component/Four":
       component = <Four state={state} />
+      break
+    case "/test":
+      component = <Test state={state} />
       break
     default: // Do nothing
 

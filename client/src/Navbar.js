@@ -35,9 +35,11 @@ export default function Navbar() {
             </li>
 
 
-
             <li>
                 <a href='/component/Search'>Serach</a>
+            </li>
+            <li>
+                <a href='/test'>Test</a>
             </li>
 
 
