@@ -20,9 +20,10 @@ export default function Two({ state }) {
 
         async function N_Product() {
             const product = await contract.methods.N_Product().call();
+            const data = await contract.methods.getManufacturerAddress().call();
 
 
-            const Fliter = product.filter((pd) => pd.Serial === '3');
+            const Fliter = product.filter((pd) => pd.Serial === '3' & pd.Receiver === data);
             setProduct(Fliter);
         }
         contract && N_Product();

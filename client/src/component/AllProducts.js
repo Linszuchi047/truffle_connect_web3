@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import State from './State';
+import Supplier from './Supplier';
 export default function AllProducts({ state }) {
 
     const [product, setProduct] = useState([]);
@@ -19,6 +20,7 @@ export default function AllProducts({ state }) {
 
     const [isOpen, setOpen] = useState(false);
     const [record, setRecord] = useState([]);
+    const [open, setopen] = useState(false);
 
     async function getProductState(address) {
         const { contract } = state;
@@ -26,6 +28,9 @@ export default function AllProducts({ state }) {
         setRecord(record)
         setOpen(true)
 
+    }
+    function openModal() {
+        setopen(true);
     }
 
 
@@ -70,6 +75,7 @@ export default function AllProducts({ state }) {
 
                         <th>商品ID</th>
                         <th>製造商ID</th>
+                        {/* <th>下游</th> */}
                         <th>商品</th>
                         <th >材質</th>
                         <th >價格</th>
@@ -97,7 +103,7 @@ export default function AllProducts({ state }) {
                                     }}
                                 >
                                     <button onClick={() => getProductState(pd.ProductID)} style={{ position: 'relative', width: '100%', backgroundColor: "#C2C287" }}>{pd.ProductID}</button>
-                                    <State open={isOpen} isClose={() => setOpen(false)} record={record}>
+                                    <State open={isOpen} isClose={() => setOpen(false)} record={record} Id={pd.ProductID}>
                                     </State>
 
                                 </td>
@@ -114,6 +120,19 @@ export default function AllProducts({ state }) {
                                 >
                                     {pd.Manufacturer}
                                 </td>
+                                {/* <td
+                                    style={{
+                                        backgroundColor: "#dcdc9e",
+                                        border: "1px solid white",
+                                        borderCollapse: "collapse",
+                                        padding: "7px",
+                                        width: "50px",
+                                        color: "black",
+
+                                    }}
+                                >
+                                    {pd.Receiver}
+                                </td> */}
 
 
                                 <td
@@ -194,6 +213,22 @@ export default function AllProducts({ state }) {
                                     }}
                                 >
                                     {pd.Serial}
+                                </td>
+                                <td
+                                    style={{
+                                        backgroundColor: "#dcdc9e",
+                                        border: "1px solid white",
+                                        borderCollapse: "collapse",
+                                        padding: "7px",
+                                        width: "50px",
+                                        color: "black",
+
+                                    }}
+                                >
+                                    <button onClick={openModal} style={{ position: 'relative', width: '100%', backgroundColor: "#C2C287" }}>Supplier</button>
+                                    <Supplier state={state} open={open} Close={() => setopen(false)} Id={pd.ProductID} Ad={pd.Manufacturer}>
+                                    </Supplier>
+
                                 </td>
                             </tr>
 

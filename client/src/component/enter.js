@@ -3,8 +3,6 @@ import './enter.css';
 
 
 
-
-
 const Enter = ({ state }) => {
     const [Manufacturer_Address, setAdress] = useState('');
     // const [record, setRecord] = useState([]);
@@ -41,7 +39,8 @@ const Enter = ({ state }) => {
         const ProductName = document.querySelector("#ProductName").value;
         const ProductType = document.querySelector("#ProductType").value;
         const ProductPrice = document.querySelector("#ProductPrice").value;
-        await contract.methods.createProduct(ProductName, ProductType, ProductPrice).send({ from: Manufacturer_Address, gas: '1000000' });
+        const Receiver = document.querySelector("#Receiver").value;
+        await contract.methods.createProduct(ProductName, ProductType, ProductPrice, Receiver).send({ from: Manufacturer_Address, gas: '1000000' });
 
         alert("Tracking is successul");
         window.location.reload();
@@ -75,6 +74,9 @@ const Enter = ({ state }) => {
                 </div>
                 <div>
                     <input type="number" required="required" id="ProductPrice" placeholder='ProductPrice' />
+                </div>
+                <div>
+                    <input type="text" required="required" id="Receiver" placeholder='Receiver' />
                 </div>
                 <div>
                     <input type="submit" value="Enter" disabled={!state.contract} />

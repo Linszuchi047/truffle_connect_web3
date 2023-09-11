@@ -39,7 +39,7 @@ export default function Navbar() {
                 <a href='/component/Search'>Serach</a>
             </li>
             <li>
-                <a href='/test'>Test</a>
+                <a href='/test'>Add</a>
             </li>
 
 

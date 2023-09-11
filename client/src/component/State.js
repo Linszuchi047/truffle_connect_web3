@@ -4,7 +4,7 @@ import React from 'react'
 const Modal_style = {
     position: 'fixed',
     top: '13%',
-    left: '40%',
+    left: '30%',
     // transform: 'translate(-50%,-50%)',
     backgroundColor: 'white',
     padding: '60px',
@@ -19,12 +19,12 @@ const OverStyle = {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    zIndex: 1
+    backgroundColor: 'rgba(0,0,0,0.03)',
+    zIndex: 1000
 
 }
 
-export default function State({ open, isClose, record }) {
+export default function State({ open, isClose, record, Id }) {
 
     if (!open) return null
 
@@ -63,6 +63,7 @@ export default function State({ open, isClose, record }) {
 
 
             <div style={Modal_style} class='animate'>
+                <td>ID: </td><td style={{ color: 'red' }}>{Id}</td><br></br>
                 <td>SETTING : </td><td>{Check(record[0])}</td><br></br>
 
 

@@ -7,6 +7,8 @@ contract SupplyChain {
         uint Serial;
         address Manufacturer;
         address ProductID;
+        address Receiver;
+        // mapping(uint => Supplier) Supply;
         string ProductName;
         string ProductType;
         uint ProductPrice;
@@ -16,24 +18,43 @@ contract SupplyChain {
         uint TimeStamp;
         string State;
     }
+    // struct Component{
+    //     mapping(uint => Supplier) Supply;
+    // }
+    struct Supplier {
+        address _product;
+        string Supply;
+    }
 
     struct ProductDetail {
         uint Serial;
         address Manufacturer;
         address ProductID;
+        address Receiver;
         string ProductName;
         string ProductType;
         uint ProductPrice;
         uint TimeStamp;
         string State;
     }
+    // mapping(address => Component) components;
 
     mapping(address => Product) myproduct;
     ProductDetail[] products;
     address[] ProductAddresses;
     string Manufacturer_Address;
-
     ProductDetail[] N_Products;
+    Supplier[] suppliers;
+
+    function AddSupplier(address _addr, string memory _supplier) public {
+        // Supplier memory _com = Supplier(_count,_supplier);
+        // components[_addr].Supply[_count] = _com;
+        suppliers.push(Supplier(_addr, _supplier));
+    }
+
+    function getSupplier() public view returns (Supplier[] memory) {
+        return suppliers;
+    }
 
     function enterAddress(string memory _Manufacturer_Address) public {
         Manufacturer_Address = _Manufacturer_Address;
@@ -46,7 +67,8 @@ contract SupplyChain {
     function createProduct(
         string memory _ProductName,
         string memory _ProductType,
-        uint _ProductPrice
+        uint _ProductPrice,
+        address _Receiver
     ) public {
         address addr = address(
             bytes20(sha256(abi.encodePacked(msg.sender, block.timestamp)))
@@ -56,6 +78,10 @@ contract SupplyChain {
         myproduct[addr].Manufacturer = msg.sender;
         myproduct[addr].ProductID = addr;
         myproduct[addr].ProductName = _ProductName;
+        myproduct[addr].Receiver = _Receiver;
+        // Supplier memory _supply = Supplier(msg.sender);
+        // myproduct[addr].Supply[0] = _supply;
+
         myproduct[addr].ProductType = _ProductType;
         myproduct[addr].ProductPrice = _ProductPrice;
         StateTime memory _state = StateTime(block.timestamp, "SEETING");
@@ -72,6 +98,7 @@ contract SupplyChain {
                 myproduct[addr].Serial,
                 msg.sender,
                 addr,
+                _Receiver,
                 _ProductName,
                 _ProductType,
                 _ProductPrice,
@@ -85,6 +112,7 @@ contract SupplyChain {
                 myproduct[addr].Serial,
                 myproduct[addr].Manufacturer,
                 myproduct[addr].ProductID,
+                myproduct[addr].Receiver,
                 myproduct[addr].ProductName,
                 myproduct[addr].ProductType,
                 myproduct[addr].ProductPrice,
@@ -107,6 +135,7 @@ contract SupplyChain {
                     myproduct[addr].Serial,
                     msg.sender,
                     addr,
+                    myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
                     myproduct[addr].ProductType,
                     myproduct[addr].ProductPrice,
@@ -120,6 +149,7 @@ contract SupplyChain {
                     myproduct[addr].Serial,
                     msg.sender,
                     addr,
+                    myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
                     myproduct[addr].ProductType,
                     myproduct[addr].ProductPrice,
@@ -139,6 +169,7 @@ contract SupplyChain {
                     myproduct[addr].Serial,
                     msg.sender,
                     addr,
+                    myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
                     myproduct[addr].ProductType,
                     myproduct[addr].ProductPrice,
@@ -152,6 +183,7 @@ contract SupplyChain {
                     myproduct[addr].Serial,
                     msg.sender,
                     addr,
+                    myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
                     myproduct[addr].ProductType,
                     myproduct[addr].ProductPrice,
@@ -171,6 +203,7 @@ contract SupplyChain {
                     myproduct[addr].Serial,
                     msg.sender,
                     addr,
+                    myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
                     myproduct[addr].ProductType,
                     myproduct[addr].ProductPrice,
@@ -184,6 +217,7 @@ contract SupplyChain {
                     myproduct[addr].Serial,
                     msg.sender,
                     addr,
+                    myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
                     myproduct[addr].ProductType,
                     myproduct[addr].ProductPrice,
@@ -203,6 +237,7 @@ contract SupplyChain {
                     myproduct[addr].Serial,
                     msg.sender,
                     addr,
+                    myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
                     myproduct[addr].ProductType,
                     myproduct[addr].ProductPrice,
@@ -216,6 +251,7 @@ contract SupplyChain {
                     myproduct[addr].Serial,
                     msg.sender,
                     addr,
+                    myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
                     myproduct[addr].ProductType,
                     myproduct[addr].ProductPrice,
@@ -255,6 +291,7 @@ contract SupplyChain {
             uint,
             address,
             address,
+            address,
             string memory,
             string memory,
             uint,
@@ -268,7 +305,8 @@ contract SupplyChain {
             myproduct[id].Serial,
             myproduct[id].Manufacturer,
             myproduct[id].ProductID,
-            myproduct[id].ProductName,
+            myproduct[_id].Receiver,
+            myproduct[_id].ProductName,
             myproduct[_id].ProductType,
             myproduct[_id].ProductPrice,
             myproduct[_id].State[_serial].TimeStamp,
@@ -287,33 +325,7 @@ contract SupplyChain {
         }
     }
 
-    // function get() public view returns(uint){
-    //     return products[0].Serial;
-
-    // }
-
-    // function GetN_Product(uint _serial) public {
-    //     for (uint i = 0; i < 1; i++) {
-    //         if (myproduct[ProductAddresses[i]].Serial == _serial) {
-    //             N_Products.push(
-    //                 ProductDetail(
-    //                     myproduct[ProductAddresses[i]].Serial,
-    //                     myproduct[ProductAddresses[i]].Manufacturer,
-    //                     myproduct[ProductAddresses[i]].ProductID,
-    //                     myproduct[ProductAddresses[i]].ProductName,
-    //                     myproduct[ProductAddresses[i]].ProductType,
-    //                     myproduct[ProductAddresses[i]].ProductPrice,
-    //                     myproduct[ProductAddresses[i]].State[_serial].TimeStamp,
-    //                     myproduct[ProductAddresses[i]].State[_serial].State
-    //                 )
-    //             );
-    //         }
-    //     }
-    // }
-
     function N_Product() public view returns (ProductDetail[] memory) {
         return N_Products;
     }
-
-    // }
 }

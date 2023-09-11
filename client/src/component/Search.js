@@ -9,15 +9,24 @@ export default function Search({ state }) {
     // const [openEnter, setEnter] = useState(false);
     const [isOpen, setOpen] = useState(false);
     const [record, setRecord] = useState([]);
+    const [component, setCom] = useState([]);
 
     async function productAddress() {
         const { contract } = state;
         const Product_Address = document.querySelector("#product").value;
         const record = await contract.methods.getProduct(Product_Address).call();
-        setRecord(record)
-        setOpen(true)
+        const com = await contract.methods.getSupplier().call();
+        const Fliter = com.filter((c) => c._product === Product_Address);
+        const data = Fliter.map((pd) => {
+            return (pd.Supply)
+        })
+
+        setCom(data);
+        setRecord(record);
+        setOpen(true);
 
     }
+
 
     // if (!open) return null
 
@@ -35,7 +44,7 @@ export default function Search({ state }) {
                 <button onClick={productAddress}>
                     輸入產品ID
                 </button>
-                <Product open={isOpen} isClose={() => setOpen(false)} record={record}>
+                <Product open={isOpen} isClose={() => setOpen(false)} record={record} com={component}>
                     fancy modal
                 </Product>
 

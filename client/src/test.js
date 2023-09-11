@@ -37,7 +37,7 @@ function Test({ state }) {
         const { contract } = state;
         for (let i = 0; i < data.length; i++) {
             k.push(Object.values(data[i])[1]);
-            await contract.methods.createProduct(Object.values(data[i])[1], Object.values(data[i])[2], Object.values(data[i])[3]).send({ from: Manufacturer_Address, gas: '1000000' });
+            await contract.methods.createProduct(Object.values(data[i])[1], Object.values(data[i])[2], Object.values(data[i])[3], Object.values(data[i])[4]).send({ from: Manufacturer_Address, gas: '1000000' });
 
         }
         alert("Tracking is successul");
@@ -46,7 +46,7 @@ function Test({ state }) {
 
 
     return (
-        <div className="App">
+        <div className="App" style={{ position: 'fixed', top: '20%', left: '40%' }}>
 
             <input
                 type="file"
@@ -59,7 +59,7 @@ function Test({ state }) {
 
             {data.length > 0 && (
                 <>
-                    <div>{Object.values(data[0])[2]}</div>
+
 
                     <button onClick={() => set()}>Upload</button>
                 </>
