@@ -5,7 +5,7 @@ import * as XLSX from "xlsx";
 function Test({ state }) {
 
     const [data, setData] = useState([]);
-
+    // 取得excel資料，並解析
     const handleFileUpload = (e) => {
         const reader = new FileReader();
         reader.readAsBinaryString(e.target.files[0]);
@@ -21,7 +21,7 @@ function Test({ state }) {
     }
 
     const [Manufacturer_Address, setAdress] = useState('');
-
+    // 取得製造商address
     useEffect(() => {
         const { contract } = state;
         async function readData() {
@@ -33,6 +33,7 @@ function Test({ state }) {
 
 
     let k = [];
+    // 將資料逐一寫入區塊鏈
     async function set() {
         const { contract } = state;
         for (let i = 0; i < data.length; i++) {
@@ -47,44 +48,21 @@ function Test({ state }) {
 
     return (
         <div className="App" style={{ position: 'fixed', top: '20%', left: '40%' }}>
-
+            {/* 輸入檔案 */}
             <input
                 type="file"
                 accept=".xlsx, .xls"
                 onChange={handleFileUpload}
             />
 
-
-
-
+            {/* 上傳 */}
             {data.length > 0 && (
                 <>
-
 
                     <button onClick={() => set()}>Upload</button>
                 </>
 
 
-                // <table className="table">
-                //     <thead>
-                //         <tr>
-                //             {Object.keys(data[0]).map((key) => (
-                //                 <th>{key}</th>
-
-                //             ))}
-                //             {Object.values(data[0])[1]}
-                //         </tr>
-                //     </thead>
-                //     <tbody>
-                //         {data.map((row, index) => (
-                //             <tr key={index}>
-                //                 {Object.values(row).map((value) => (
-                //                     <td key={index}>{value}</td>
-                //                 ))}
-                //             </tr>
-                //         ))}
-                //     </tbody>
-                // </table>
             )}
 
 

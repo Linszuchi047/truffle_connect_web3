@@ -6,11 +6,11 @@ import Product from "./product";
 export default function Search({ state }) {
 
 
-    // const [openEnter, setEnter] = useState(false);
+    // 控制彈出視窗的開關
     const [isOpen, setOpen] = useState(false);
     const [record, setRecord] = useState([]);
     const [component, setCom] = useState([]);
-
+    // 查詢特定產品編號的資料以及上游原料產品編號
     async function productAddress() {
         const { contract } = state;
         const Product_Address = document.querySelector("#product").value;
@@ -28,15 +28,10 @@ export default function Search({ state }) {
     }
 
 
-    // if (!open) return null
-
-
 
 
     return (
         <>
-
-
 
 
             <div style={{ position: 'fixed', top: '15%', left: '38%' }} class='animate'>
@@ -44,17 +39,10 @@ export default function Search({ state }) {
                 <button onClick={productAddress}>
                     輸入產品ID
                 </button>
+                {/* 彈出視窗 */}
                 <Product open={isOpen} isClose={() => setOpen(false)} record={record} com={component}>
                     fancy modal
                 </Product>
-
-                {/* <td>製造商 : </td><td>{record[0]}</td><br></br>
-                <td>產品ID : </td><td>{record[1]}</td><br></br>
-                <td>商品名稱 : </td><td>{record[2]}</td><br></br>
-                <td>商品材質 : </td><td>{record[3]}</td><br></br>
-                <td>價格 : </td><td>{record[4]}</td><br></br>
-                <td>紀錄時間 : </td><td>{Date(record[5] * 1000).toLocaleString()}</td><br></br>
-                <td>狀態 : </td><td>{record[6]}</td><br></br> */}
 
             </div>
         </>

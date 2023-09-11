@@ -1,5 +1,4 @@
 import React from 'react'
-// import { useState } from "react";
 
 const Modal_style = {
     position: 'fixed',
@@ -28,24 +27,8 @@ export default function State({ open, isClose, record, Id }) {
 
     if (!open) return null
 
-    // useEffect(() => {
-    // const { contract } = state;
-    //     async function readData() {
-    //         const data = await contract.methods.getManufacturerAddress().call();
-    //         setAdress(data);
-    //     }
-    //     contract && readData();
-    // }, [state]);
 
-
-    // async function productAddress() {
-    //     const { contract } = state;
-    //     const Product_Address = document.querySelector("#product").value;
-    //     const record = await contract.methods.getProduct(Product_Address).call();
-    //     setRecord(record)
-
-    // }
-
+    // 確認各個階段的時間戳記是否不為預設值，不是0則進行日期轉換
     function Check(day) {
         if (day === '0') {
             return 0
@@ -59,6 +42,7 @@ export default function State({ open, isClose, record, Id }) {
 
     return (
         <>
+            {/* 顯示該產品的個階段狀態改變時間 */}
             <div style={OverStyle} />
 
 

@@ -29,7 +29,7 @@ export default function Supplier({ state, open, Close, Id, Ad }) {
 
 
 
-
+    // 可以輸入上游原料產品編碼
     const enterSupplier = async (event) => {
         event.preventDefault();
         const { contract } = state;
@@ -51,6 +51,7 @@ export default function Supplier({ state, open, Close, Id, Ad }) {
 
 
             <div style={Modal_style} class='animate' >
+                {/* 顯示輸入表格 */}
 
 
 

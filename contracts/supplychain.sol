@@ -3,29 +3,28 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 contract SupplyChain {
+    // 產品記錄結構
     struct Product {
         uint Serial;
         address Manufacturer;
         address ProductID;
         address Receiver;
-        // mapping(uint => Supplier) Supply;
         string ProductName;
         string ProductType;
         uint ProductPrice;
         mapping(uint => StateTime) State;
     }
+    //狀態
     struct StateTime {
         uint TimeStamp;
         string State;
     }
-    // struct Component{
-    //     mapping(uint => Supplier) Supply;
-    // }
+    // 上游原料
     struct Supplier {
         address _product;
         string Supply;
     }
-
+    // 玩整產品細項
     struct ProductDetail {
         uint Serial;
         address Manufacturer;
@@ -37,7 +36,6 @@ contract SupplyChain {
         uint TimeStamp;
         string State;
     }
-    // mapping(address => Component) components;
 
     mapping(address => Product) myproduct;
     ProductDetail[] products;
@@ -46,24 +44,27 @@ contract SupplyChain {
     ProductDetail[] N_Products;
     Supplier[] suppliers;
 
+    // 加入上游原料
     function AddSupplier(address _addr, string memory _supplier) public {
-        // Supplier memory _com = Supplier(_count,_supplier);
-        // components[_addr].Supply[_count] = _com;
         suppliers.push(Supplier(_addr, _supplier));
     }
 
+    // 取得上游原料
     function getSupplier() public view returns (Supplier[] memory) {
         return suppliers;
     }
 
+    // 輸入製造商Address
     function enterAddress(string memory _Manufacturer_Address) public {
         Manufacturer_Address = _Manufacturer_Address;
     }
 
+    // 取得製造商Address
     function getManufacturerAddress() public view returns (string memory) {
         return Manufacturer_Address;
     }
 
+    // 創建產品，且初始化狀態預設剩下的狀態階段時間戳記為0，以及複製產品紀錄至products、N_Products
     function createProduct(
         string memory _ProductName,
         string memory _ProductType,
@@ -122,6 +123,7 @@ contract SupplyChain {
         );
     }
 
+    // 改變狀態時一併更新時間，複製產品紀錄至products、N_Products
     function ChangeState(address addr) public {
         myproduct[addr].Serial++;
         if (myproduct[addr].Serial == 1) {
@@ -262,14 +264,17 @@ contract SupplyChain {
         }
     }
 
+    // 取得所有產品編號
     function getAllProductAddr() external view returns (address[] memory) {
         return ProductAddresses;
     }
 
+    // 取得所有產品細項
     function getAllProduct() public view returns (ProductDetail[] memory) {
         return products;
     }
 
+    // 取得特定產品歷史狀態
     function getProductState(
         address id
     ) public view returns (uint, uint, uint, uint, uint) {
@@ -282,6 +287,7 @@ contract SupplyChain {
         );
     }
 
+    // 取得特定產品細項
     function getProduct(
         address id
     )
@@ -314,6 +320,7 @@ contract SupplyChain {
         );
     }
 
+    // 刪除改變狀態後N_Products的產品紀錄
     function Delete(address id) public {
         for (uint i = 0; i < N_Products.length; i++) {
             if (N_Products[i].ProductID == id) {
@@ -325,6 +332,7 @@ contract SupplyChain {
         }
     }
 
+    // 取得N_Products的產品紀錄
     function N_Product() public view returns (ProductDetail[] memory) {
         return N_Products;
     }

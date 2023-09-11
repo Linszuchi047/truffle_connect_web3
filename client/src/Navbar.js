@@ -2,7 +2,7 @@
 export default function Navbar() {
 
 
-
+    // 橫幅功能列
     return <nav className='nav'>
 
         <a href='/' className='site-title'>SupplyChain Blockchain</a>

@@ -1,28 +1,17 @@
 import { useState, useEffect } from "react";
 export default function Four({ state }) {
     const [product, setProduct] = useState([]);
-    // const [Manufacturer_Address, setAdress] = useState('');
-    // const [record, setRecord] = useState([]);
 
-    // useEffect(() => {
-    //     const { contract } = state;
-    //     async function readData() {
-    //         const data = await contract.methods.getManufacturerAddress().call();
-    //         setAdress(data);
-    //     }
-    //     contract && readData();
-    // }, [state]);
-
-
-
+    // 取得產品狀態為第四階段的產品
     useEffect(() => {
         const { contract } = state;
 
         async function N_Product() {
             const product = await contract.methods.N_Product().call();
+            const data = await contract.methods.getManufacturerAddress().call();
 
 
-            const Fliter = product.filter((pd) => pd.Serial === '4');
+            const Fliter = product.filter((pd) => pd.Serial === '4' & pd.Manufacturer === data);
             setProduct(Fliter);
         }
         contract && N_Product();
@@ -30,13 +19,6 @@ export default function Four({ state }) {
 
     }, [state]);
 
-    // async function ChangeState(address) {
-    //     const { contract } = state;
-    //     await contract.methods.ChangeState(address).send({ from: Manufacturer_Address, gas: '1000000' })
-    //     alert("Changing is successul");
-    //     window.location.reload();
-
-    // }
 
     return (
         <>
@@ -45,7 +27,7 @@ export default function Four({ state }) {
             <div style={{ position: 'initial', top: '15%', left: '2.5%' }} class='animate'>
 
 
-
+                {/* 列出第四階段產品 */}
                 <table>
                     <thead>
                         <tr>

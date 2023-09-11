@@ -27,7 +27,7 @@ function App() {
     web3: null,
     contract: null,
   });
-  // const [count, setCount] = useState(0);
+  // 連線至ganache區塊鏈
 
   useEffect(() => {
     const provider = new Web3.providers.HttpProvider("HTTP://127.0.0.1:7545");
@@ -48,7 +48,7 @@ function App() {
   }, []);
 
 
-
+  // 各種分頁
   let component
 
   switch (window.location.pathname) {
@@ -93,37 +93,11 @@ function App() {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
   return (
-
-
-
-
-
-
 
     <div style={{ zIndex: 2 }}>
       <Navbar></Navbar>
       {component}
-
-
-      {/* <button onClick={() => { setEnter(true); }} style={{ width: 'auto' }}>Enter</button>
-      {openEnter && <Enter closeEnter={setEnter} state={state} />} */}
-      {/* <Test state={state} />
-      <Product state={state} /> */}
-
-
-
 
     </div>
 

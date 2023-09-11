@@ -4,7 +4,7 @@ import React from 'react'
 const Modal_style = {
     position: 'fixed',
     top: '13%',
-    left: '30%',
+    left: '25%',
     // transform: 'translate(-50%,-50%)',
     backgroundColor: 'white',
     padding: '60px',
@@ -20,7 +20,7 @@ const OverStyle = {
     right: 0,
     bottom: 0,
 
-    backgroundColor: 'rgba(0,0,0,0.03)',
+    backgroundColor: 'rgba(0,0,0,0.3)',
     zIndex: 1
 
 }
@@ -29,28 +29,10 @@ export default function Product({ open, isClose, record, com }) {
     if (!open) return null
 
 
-    // useEffect(() => {
-    // const { contract } = state;
-    //     async function readData() {
-    //         const data = await contract.methods.getManufacturerAddress().call();
-    //         setAdress(data);
-    //     }
-    //     contract && readData();
-    // }, [state]);
-
-
-    // async function productAddress() {
-    //     const { contract } = state;
-    //     const Product_Address = document.querySelector("#product").value;
-    //     const record = await contract.methods.getProduct(Product_Address).call();
-    //     setRecord(record)
-
-    // }
-
-
 
     return (
         <>
+            {/* 顯示所有產品細項以及最新狀態 */}
             <div style={OverStyle} />
 
 

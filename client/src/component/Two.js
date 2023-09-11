@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 export default function Two({ state }) {
     const [product, setProduct] = useState([]);
     const [Manufacturer_Address, setAdress] = useState('');
-    // const [record, setRecord] = useState([]);
 
+    // 取得製造商address
     useEffect(() => {
         const { contract } = state;
         async function readData() {
@@ -14,7 +14,7 @@ export default function Two({ state }) {
     }, [state]);
 
 
-
+    // 取得產品狀態為第二階段的產品
     useEffect(() => {
         const { contract } = state;
 
@@ -30,7 +30,7 @@ export default function Two({ state }) {
 
 
     }, [state]);
-
+    // 將第二狀態改至第三狀態
     async function ChangeState(address) {
         const { contract } = state;
         await contract.methods.ChangeState(address).send({ from: Manufacturer_Address, gas: '1000000' })
@@ -46,7 +46,7 @@ export default function Two({ state }) {
             <div style={{ position: 'initial', top: '15%', left: '2.5%' }} class='animate'>
 
 
-
+                {/* 列出第二階段產品 */}
                 <table>
                     <thead>
                         <tr>
