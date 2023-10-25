@@ -20,10 +20,10 @@ contract SupplyChain {
         string State;
     }
     // 上游原料
-    struct Supplier {
-        address _product;
-        string Supply;
-    }
+    // struct Supplier {
+    //     address _product;
+    //     string Supply;
+    // }
     // 玩整產品細項
     struct ProductDetail {
         uint Serial;
@@ -42,17 +42,18 @@ contract SupplyChain {
     address[] ProductAddresses;
     string Manufacturer_Address;
     ProductDetail[] N_Products;
-    Supplier[] suppliers;
+
+    // Supplier[] suppliers;
 
     // 加入上游原料
-    function AddSupplier(address _addr, string memory _supplier) public {
-        suppliers.push(Supplier(_addr, _supplier));
-    }
+    // function AddSupplier(address _addr, string memory _supplier) public {
+    //     suppliers.push(Supplier(_addr, _supplier));
+    // }
 
     // 取得上游原料
-    function getSupplier() public view returns (Supplier[] memory) {
-        return suppliers;
-    }
+    // function getSupplier() public view returns (Supplier[] memory) {
+    //     return suppliers;
+    // }
 
     // 輸入製造商Address
     function enterAddress(string memory _Manufacturer_Address) public {
@@ -65,18 +66,24 @@ contract SupplyChain {
     }
 
     // 創建產品，且初始化狀態預設剩下的狀態階段時間戳記為0，以及複製產品紀錄至products、N_Products
+    uint nonce;
+
     function createProduct(
         string memory _ProductName,
         string memory _ProductType,
         uint _ProductPrice,
-        address _Receiver
+        address _Receiver,
+        address _Manufacturer
     ) public {
+        nonce++;
         address addr = address(
-            bytes20(sha256(abi.encodePacked(msg.sender, block.timestamp)))
+            bytes20(
+                sha256(abi.encodePacked(msg.sender, block.timestamp, nonce))
+            )
         );
         myproduct[addr].Serial = 0;
 
-        myproduct[addr].Manufacturer = msg.sender;
+        myproduct[addr].Manufacturer = _Manufacturer;
         myproduct[addr].ProductID = addr;
         myproduct[addr].ProductName = _ProductName;
         myproduct[addr].Receiver = _Receiver;
@@ -85,7 +92,7 @@ contract SupplyChain {
 
         myproduct[addr].ProductType = _ProductType;
         myproduct[addr].ProductPrice = _ProductPrice;
-        StateTime memory _state = StateTime(block.timestamp, "SEETING");
+        StateTime memory _state = StateTime(block.timestamp, "SETING");
         myproduct[addr].State[myproduct[addr].Serial] = _state;
 
         myproduct[addr].State[1].TimeStamp = 0;
@@ -97,7 +104,7 @@ contract SupplyChain {
         products.push(
             ProductDetail(
                 myproduct[addr].Serial,
-                msg.sender,
+                _Manufacturer,
                 addr,
                 _Receiver,
                 _ProductName,
@@ -135,7 +142,7 @@ contract SupplyChain {
             products.push(
                 ProductDetail(
                     myproduct[addr].Serial,
-                    msg.sender,
+                    myproduct[addr].Manufacturer,
                     addr,
                     myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
@@ -149,7 +156,7 @@ contract SupplyChain {
             N_Products.push(
                 ProductDetail(
                     myproduct[addr].Serial,
-                    msg.sender,
+                    myproduct[addr].Manufacturer,
                     addr,
                     myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
@@ -169,7 +176,7 @@ contract SupplyChain {
             products.push(
                 ProductDetail(
                     myproduct[addr].Serial,
-                    msg.sender,
+                    myproduct[addr].Manufacturer,
                     addr,
                     myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
@@ -183,7 +190,7 @@ contract SupplyChain {
             N_Products.push(
                 ProductDetail(
                     myproduct[addr].Serial,
-                    msg.sender,
+                    myproduct[addr].Manufacturer,
                     addr,
                     myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
@@ -203,7 +210,7 @@ contract SupplyChain {
             products.push(
                 ProductDetail(
                     myproduct[addr].Serial,
-                    msg.sender,
+                    myproduct[addr].Manufacturer,
                     addr,
                     myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
@@ -217,7 +224,7 @@ contract SupplyChain {
             N_Products.push(
                 ProductDetail(
                     myproduct[addr].Serial,
-                    msg.sender,
+                    myproduct[addr].Manufacturer,
                     addr,
                     myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
@@ -237,7 +244,7 @@ contract SupplyChain {
             products.push(
                 ProductDetail(
                     myproduct[addr].Serial,
-                    msg.sender,
+                    myproduct[addr].Manufacturer,
                     addr,
                     myproduct[addr].Receiver,
                     myproduct[addr].ProductName,
@@ -251,7 +258,7 @@ contract SupplyChain {
             N_Products.push(
                 ProductDetail(
                     myproduct[addr].Serial,
-                    msg.sender,
+                    myproduct[addr].Manufacturer,
                     addr,
                     myproduct[addr].Receiver,
                     myproduct[addr].ProductName,

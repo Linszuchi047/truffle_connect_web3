@@ -24,7 +24,7 @@ const OverStyle = {
     zIndex: 1
 
 }
-export default function Product({ open, isClose, record, com }) {
+export default function Product({ open, isClose, record }) {
 
     if (!open) return null
 
@@ -68,14 +68,11 @@ export default function Product({ open, isClose, record, com }) {
                     </tr>
 
                 </table>
-                <td>上游 : </td>
+                {/* <td>原料 :</td>
+
                 {com.map((pd) => {
                     return (<tr><td>{pd}</td></tr>)
-                })}
-
-
-
-
+                })} */}
 
                 <button onClick={isClose} >Close</button>
 
