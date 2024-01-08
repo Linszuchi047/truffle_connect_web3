@@ -12,7 +12,7 @@ export default function Register() {
         if (Password === ConfirmPassword) {
             try {
                 //發到後端
-                const response = await axios.post('http://localhost:5000/register', {
+                await axios.post('http://localhost:5000/register', {
                     CompanyName,
                     CompanyId,
                     Password

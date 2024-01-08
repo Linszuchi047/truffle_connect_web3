@@ -4,13 +4,13 @@ import supplychain from "./contracts/SupplyChain.json";
 import './App.css';
 import './styles.css';
 
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Enter from './component/enter';
 import Login from "./component/login";
 import Register from "./component/register";
-import Address from "./component/address";
+// import Address from "./component/address";
 import Search from "./component/Search";
 import AllProducts from './component/AllProducts';
 import ProductsId from './component/ProductsId';
@@ -65,6 +65,9 @@ function App() {
 
   switch (window.location.pathname) {
     case "/":
+      component = <Enter state={state} />
+      break
+    case "/Enter":
       component = <Enter state={state} />
       break
     case "/component/ProductsId":
