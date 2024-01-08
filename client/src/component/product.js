@@ -58,13 +58,13 @@ export default function Product({ open, isClose, record }) {
                     </tr>
                     <tr>
 
-                        <td>價格 :{record[6]}</td>
-                        <td>紀錄時間 :{new Date(record[7] * 1000).toLocaleString()}</td>
+                        <td>價格 :{Number(record[6])}</td>
+                        <td>紀錄時間 :{new Date(Number(record[7]) * 1000).toLocaleString()}</td>
                     </tr>
                     <tr>
 
                         <td>狀態 :{record[8]}</td>
-                        <td>階段 :{record[0]}</td>
+                        <td>階段 :{Number(record[0])}</td>
                     </tr>
 
                 </table>

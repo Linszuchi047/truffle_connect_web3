@@ -150,7 +150,7 @@ export default function AllProducts({ state }) {
 
                                     }}
                                 >
-                                    {pd.ProductPrice}
+                                    {Number(pd.ProductPrice)}
                                 </td>
                                 <td
                                     style={{
@@ -163,7 +163,7 @@ export default function AllProducts({ state }) {
 
                                     }}
                                 >
-                                    {new Date(pd.TimeStamp * 1000).toLocaleString()}
+                                    {new Date(Number(pd.TimeStamp) * 1000).toLocaleString()}
                                 </td>
                                 <td
                                     style={{
@@ -176,7 +176,7 @@ export default function AllProducts({ state }) {
 
                                     }}
                                 >
-                                    {pd.State}
+                                    {pd.State.toString()}
                                 </td>
 
                                 <td
@@ -190,7 +190,7 @@ export default function AllProducts({ state }) {
 
                                     }}
                                 >
-                                    {pd.Serial}
+                                    {Number(pd.Serial)}
                                 </td>
                                 {/* <td
                                     style={{
